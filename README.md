@@ -1,0 +1,51 @@
+# Awesome Stock Skills
+
+A curated collection of [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skills for Indian stock market research and analysis.
+
+These skills work as plug-and-play modules for Claude Code — give it domain expertise for equity research, concall analysis, financial data collection, and more.
+
+## Skills
+
+| Skill | Description |
+|-------|-------------|
+| [fetch-concalls](skills/fetch-concalls/) | Fetch & download conference call transcript PDFs for any Indian listed company. Uses a 3-tier fallback: screener.in → official BSE/NSE filings → third-party aggregators. |
+
+## Installation
+
+Copy any skill folder into your project's `.claude/skills/` directory:
+
+```bash
+# Clone the repo
+git clone https://github.com/samyakjain0606/awesome-stock-skills.git
+
+# Copy a skill to your project
+cp -r awesome-stock-skills/skills/fetch-concalls /path/to/your-project/.claude/skills/
+```
+
+## Usage
+
+Once installed, Claude Code automatically picks up the skill. Just ask naturally:
+
+```
+> fetch concalls for YATHARTH
+> get concall links for GRSE
+> download concall transcripts for TCS
+```
+
+## Data Sources
+
+- [screener.in](https://www.screener.in) — Primary source for aggregated BSE concall links
+- [BSE India](https://www.bseindia.com) — Official regulatory filings
+- [NSE India](https://www.nseindia.com) — Official regulatory filings
+
+## Contributing
+
+Have a useful stock analysis skill? Open a PR! Each skill should:
+
+1. Live in its own folder under `skills/`
+2. Contain a `SKILL.md` with proper YAML frontmatter (`name` and `description`)
+3. Be self-contained — no external dependencies beyond Claude Code's built-in tools
+
+## License
+
+MIT
