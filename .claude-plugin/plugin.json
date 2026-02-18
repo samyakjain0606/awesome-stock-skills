@@ -1,0 +1,12 @@
+{
+  "name": "awesome-stock-skills",
+  "version": "1.0.0",
+  "description": "A curated collection of Claude Code skills for Indian stock market research — concall transcripts, equity analysis, and more.",
+  "author": {
+    "name": "Samyak Jain",
+    "url": "https://github.com/samyakjain0606"
+  },
+  "repository": "https://github.com/samyakjain0606/awesome-stock-skills",
+  "license": "MIT",
+  "keywords": ["stocks", "finance", "concalls", "equity", "indian-market", "screener"]
+}

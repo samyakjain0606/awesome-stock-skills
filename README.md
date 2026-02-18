@@ -12,7 +12,17 @@ These skills work as plug-and-play modules for Claude Code — give it domain ex
 
 ## Installation
 
-Copy any skill folder into your project's `.claude/skills/` directory:
+### As a Plugin (recommended)
+
+Install directly and get all skills + automatic updates:
+
+```bash
+claude plugin add github:samyakjain0606/awesome-stock-skills
+```
+
+### Manual
+
+Copy individual skills into your project's `.claude/skills/` directory:
 
 ```bash
 # Clone the repo
