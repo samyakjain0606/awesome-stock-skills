@@ -9,6 +9,7 @@ These skills work as plug-and-play modules for Claude Code — give it domain ex
 | Skill | Description |
 |-------|-------------|
 | [fetch-concalls](skills/fetch-concalls/) | Fetch & download conference call transcript PDFs for any Indian listed company. Uses a 3-tier fallback: screener.in → official BSE/NSE filings → third-party aggregators. |
+| [growth-trigger-analysis](skills/growth-trigger-analysis/) | SOIC-style variant perception scorecard & growth trigger extraction from concall transcripts. Ranks VP factors by probability × impact, deep dives top 3, and produces forward-looking trigger list. |
 
 ## Installation
 
@@ -40,6 +41,9 @@ Once installed, Claude Code automatically picks up the skill. Just ask naturally
 > fetch concalls for YATHARTH
 > get concall links for GRSE
 > download concall transcripts for TCS
+> growth triggers for SAILIFE
+> VP analysis for HDFCBANK
+> variant perception scorecard for TATAELXSI
 ```
 
 ## Data Sources
