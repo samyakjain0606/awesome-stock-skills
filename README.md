@@ -12,6 +12,7 @@ These skills work as plug-and-play modules for Claude Code — give it domain ex
 | [growth-trigger-analysis](skills/growth-trigger-analysis/) | SOIC-style variant perception scorecard & growth trigger extraction from concall transcripts. Ranks VP factors by probability × impact, deep dives top 3, and produces forward-looking trigger list. |
 | [nlm-skill](skills/nlm-skill/) | NotebookLM CLI & MCP expert — create notebooks, add sources (URLs, Drive, text), generate podcasts, reports, quizzes, flashcards, slides, mind maps, infographics, videos, and data tables. Chat with sources programmatically. Requires [`notebooklm-mcp-cli`](https://github.com/nicholasgriffintn/notebooklm-mcp-cli). |
 | [stock-research-pipeline](skills/stock-research-pipeline/) | End-to-end equity research pipeline. Downloads concalls & investor presentations from screener.in, fetches financial data (P&L, balance sheet, ratios, shareholding), uploads everything to NotebookLM, runs 6 tailored analysis queries (business model, industry, management, financials, growth triggers, scenarios), and generates a professional PDF report with variant perception scorecard and Bull/Base/Bear scenarios. |
+| [stock-research-publish](skills/stock-research-publish/) | Publish a generated equity report as a PDF, a magazine-quality HTML page, or both. Optionally one-command deploys the HTML to Netlify with an interactive setup that handles CLI install, auth, site name, and deploy scope. [Live preview →](https://gravita-equity.netlify.app) |
 
 ## Installation
 
@@ -54,6 +55,10 @@ Once installed, Claude Code automatically picks up the skill. Just ask naturally
 > deep dive on TCS
 > equity report for RELIANCE
 > run the stock research pipeline on HDFCBANK
+> /stock-research-publish GRAVITA
+> publish the TCS report
+> deploy the RELIANCE report to netlify
+> I want an html version of the HDFCBANK report
 ```
 
 ## Data Sources
@@ -81,13 +86,59 @@ Requires both the `nlm` CLI (see above) and Python with `reportlab` for PDF gene
 pip install reportlab
 ```
 
+### stock-research-publish prerequisites
+
+For HTML deploys to Netlify, the skill installs the CLI for you on first run (with
+confirmation). To install manually:
+
+```bash
+npm install -g netlify-cli
+netlify login
+```
+
+PDF output uses the same `reportlab` setup as `stock-research-pipeline`.
+
 ## Contributing
 
-Have a useful stock analysis skill? Open a PR! Each skill should:
+These skills are young and the best ones come from real-world stress-testing on dozens of
+companies — different sectors, different reporting styles, different sources of edge. **Your
+PRs make these skills better for everyone.**
 
-1. Live in its own folder under `skills/`
-2. Contain a `SKILL.md` with proper YAML frontmatter (`name` and `description`)
-3. Be self-contained — no external dependencies beyond Claude Code's built-in tools
+### Add a new skill
+
+1. Create a folder under `skills/your-skill-name/`
+2. Add a `SKILL.md` with YAML frontmatter (`name` and `description`)
+3. Add a `README.md` with a quick "what it does / setup / usage" section
+4. Make it self-contained — no external dependencies beyond Claude Code's built-in tools and
+   commonly available CLIs (Python, `nlm`, `netlify`, etc.)
+5. Open a PR — include a short example of the skill running on a real company
+
+### Improve an existing skill
+
+Even small contributions help:
+
+- **More sectors covered** — most skills lean industrial/manufacturing today; banks, NBFCs,
+  insurance, FMCG, IT services, pharma, and SaaS each need sector-specific tweaks (NIM/CASA
+  for banks, SSG for retail, ARR/NRR for SaaS, etc.).
+- **Better data sources** — fallbacks for when screener.in is down, BSE/NSE direct scrapers,
+  alternative financial data providers.
+- **Tighter design rules** — particularly for the HTML/PDF outputs in `stock-research-publish`.
+  Fonts, color palettes, mobile breakpoints, dark-mode polish.
+- **More analysis frameworks** — DCF helpers, peer-comparison automation, technical analysis
+  layers, ownership/insider tracking.
+- **Bug reports with reproduction steps** — even if you can't fix it, a clear bug report on a
+  named company is a real contribution.
+
+### Ground rules for PRs
+
+- **No fabricated outputs** — skills must fail loud when inputs are missing, never invent data.
+- **No private data leakage** — be careful with example outputs; mock or anonymize anything
+  proprietary.
+- **Forbidden in HTML/visual outputs** — no Inter/Roboto fonts as primary, no indigo/violet
+  gradient text, no emoji section headers, no glowing-shadow animations. These signal "AI
+  template" and undermine trust. See `stock-research-publish/SKILL.md` for the full list.
+
+If you have an idea but aren't sure how to scope it, open an issue first — happy to discuss.
 
 ## License
 
